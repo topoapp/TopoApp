@@ -14,8 +14,8 @@ public class ResponseData {
     public String result;
     @SerializedName("msg")
     public String msg;
-    ArrayList<TopoData>data;
-    ArrayList<TopoData>topo_data;
+    ArrayList<TopoData> data;
+    ArrayList<TopoData> topo_data;
 
     public String getResult() {
         return result;

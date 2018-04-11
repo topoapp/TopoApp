@@ -135,8 +135,7 @@ public class HomeActivity extends Activity {
                                 TopoInitialization.topoAppNotifier.topoAppSucess(data.getTopo_data().get(0));
                                 finish();
                             }
-                        }else
-                        {
+                        } else {
                             Toast.makeText(HomeActivity.this, "Topo  is not found", Toast.LENGTH_SHORT).show();
                         }
 
@@ -149,7 +148,6 @@ public class HomeActivity extends Activity {
             public void onFailure(Call<ResponseData> call, Throwable t) {
                 progressbar.setVisibility(View.GONE);
                 call.cancel();
-
 
             }
         });
