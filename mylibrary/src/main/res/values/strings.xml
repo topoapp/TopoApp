@@ -17,7 +17,6 @@
     <string name="server_error">"Application is currently unavailable. Please try again later"</string>
 
 
-
     <string name="login">login</string>
     <string name="signup">signup</string>
     <string name="name">Name</string>
@@ -138,7 +137,6 @@
 
     <string name="cabs">CABS</string>
     <string name="nearby">NEAR BY</string>
-
 
 
     <string name="mapurl">https://dzgquh4f3r089.cloudfront.net/Topo/gmaps/%1$s_100_%2$s</string>
