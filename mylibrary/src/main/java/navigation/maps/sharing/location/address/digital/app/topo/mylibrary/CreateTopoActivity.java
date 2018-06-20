@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,9 +28,10 @@ import retrofit2.Response;
 
 public class CreateTopoActivity extends Activity {
 
-    EditText flat_edittext;
+    EditText flat_edittext, topoid_edittext;
     Button submit_button;
     ProgressBar progressbar;
+    RelativeLayout topoid_layout;
     String lat = "", lon = "", address = "", city = "", country = "", postalCode = "", topoId = null, usermobile = null, usercountry = null, apiKey = null;
     APIInterface apiInterface;
     int apicall = 0;
@@ -45,6 +47,8 @@ public class CreateTopoActivity extends Activity {
         progressbar = (ProgressBar) findViewById(R.id.progressbar);
         submit_button = (Button) findViewById(R.id.submit_button);
         flat_edittext = (EditText) findViewById(R.id.flat_edittext);
+        topoid_edittext = (EditText) findViewById(R.id.topoid_edittext);
+        topoid_layout = (RelativeLayout) findViewById(R.id.topoid_layout);
 
         if (getIntent() != null) {
             lat = getIntent().getStringExtra("lat");
@@ -59,6 +63,11 @@ public class CreateTopoActivity extends Activity {
             usercountry = getIntent().getStringExtra("usercountry");
         }
 
+        if (usermobile != null && usermobile.length() > 0) {
+            topoid_layout.setVisibility(View.VISIBLE);
+        } else {
+            topoid_layout.setVisibility(View.GONE);
+        }
 
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,18 +75,35 @@ public class CreateTopoActivity extends Activity {
                 if (Utility.isEmpty(flat_edittext)) {
                     Toast.makeText(CreateTopoActivity.this, "Please Enter Flat Number", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (apicall == 0) {
-                        progressbar.setVisibility(View.VISIBLE);
-                        apicall = 1;
-                        callingMapApi();
+                    if (usermobile != null && usermobile.length() > 0) {
+                        if (Utility.isEmpty(topoid_edittext)) {
+                            Toast.makeText(CreateTopoActivity.this, "Please Enter Flat Number", Toast.LENGTH_SHORT).show();
+                        } else {
+                            if (apicall == 0) {
+                                progressbar.setVisibility(View.VISIBLE);
+                                apicall = 1;
+                                callingMapApi();
+                            }
+                        }
+                    } else {
+                        if (apicall == 0) {
+                            progressbar.setVisibility(View.VISIBLE);
+                            apicall = 1;
+                            callingMapApi();
+                        }
                     }
+
                 }
             }
         });
     }
 
     void callingMapApi() {
-        Call<ResponseData> call = apiInterface.doCreateTopo("androidsdk", topoId, usermobile, lat, lon, flat_edittext.getText().toString(), address, country, city, postalCode, usercountry, apiKey);
+        if (usermobile != null && usermobile.length() > 0) {
+            topoId = topoid_edittext.getText().toString();
+        }
+        String flat = flat_edittext.getText().toString();
+        Call<ResponseData> call = apiInterface.doCreateTopo("androidsdk", topoId, usermobile, lat, lon, flat, address, country, city, postalCode, usercountry, apiKey);
         call.enqueue(new Callback<ResponseData>() {
             @Override
             public void onResponse(Call<ResponseData> call, final Response<ResponseData> response) {

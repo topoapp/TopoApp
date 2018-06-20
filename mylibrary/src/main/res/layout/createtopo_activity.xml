@@ -29,14 +29,55 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/flat_icon"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:background="@android:color/transparent"
             android:gravity="bottom"
+
             android:hint="@string/flat"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:paddingBottom="5dp"
-            android:paddingLeft="15dp"
+            android:paddingLeft="25dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textCursorDrawable="@drawable/searchcursor"
+            android:textSize="@dimen/edittext" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/topoid_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_below="@+id/password_layout"
+        android:background="@drawable/editbackground_black">
+
+        <ImageView
+            android:id="@+id/topoid_icon"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/flat" />
+
+        <EditText
+            android:id="@+id/topoid_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:gravity="bottom"
+            android:hint="@string/topoid"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:paddingBottom="5dp"
+            android:paddingLeft="25dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textCursorDrawable="@drawable/searchcursor"

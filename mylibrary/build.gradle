@@ -45,4 +45,7 @@ dependencies {
     compile('com.squareup.retrofit2:retrofit:2.1.0') {
         exclude module: 'okhttp'
     }
+    configurations.all {
+        resolutionStrategy.force 'com.android.support:support-annotations:23.1.0'
+    }
 }
